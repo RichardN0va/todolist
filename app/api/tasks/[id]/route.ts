@@ -11,9 +11,9 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 }
 
 export async function DELETE(_: Request, { params }: { params: { id: string } }) {
+    const { id } = await params
     await prisma.task.delete({
-        where: { id: params.id }
+        where: { id }
     })
     return NextResponse.json({ message: 'Deleted' }, { status: 200 })
-
 }
