@@ -1,5 +1,4 @@
 import { prisma } from "@/app/lib/db";
-import { error } from "console";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -11,12 +10,13 @@ export async function GET() {
 
 export async function POST(req: Request) {
     const { title } = await req.json()
-
+    console.log('body:', title)
     if (!title) {
         return NextResponse.json({ error: 'Title is required' }, { status: 400 })
     }
     const task = await prisma.task.create({
         data: { title }
     })
+    console.log('created task: ', task)
     return NextResponse.json(task, { status: 201 })
 }

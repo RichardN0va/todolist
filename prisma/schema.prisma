@@ -14,7 +14,7 @@ datasource db {
 
 model Task {
   id        String   @id @default(cuid())
-  title     String?
-  Completed Boolean  @default(false)
+  title     String
+  completed Boolean  @default(false)
   createdAt DateTime @default(now())
 }
